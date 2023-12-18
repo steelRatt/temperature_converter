@@ -25,6 +25,18 @@ fn fahrenheit_to_celsius(f: f64) -> f64 {
     (f - 32.0) / 1.8
 }
 
+fn get_choice() -> f64 {
+    loop {
+        let choice = get_input("Enter (1 or 2):");
+
+        if choice == 1.0 || choice == 2.0 {
+            return choice;
+        } else {
+            println!("Invalid choice.");
+        }
+    }
+}
+
 fn main() {
     println!("Welcome to Temperature Converter!");
 
@@ -33,7 +45,7 @@ fn main() {
         println!("1. Celsius to Fahrenheit");
         println!("2. Fahrenheit to Celsius");
 
-        let choice = get_input("Enter (1 or 2):");
+        let choice = get_choice();
 
         if choice == 1.0 {
             let temp = get_input("Enter temperature in C:");
@@ -47,6 +59,7 @@ fn main() {
             println!("Invalid choice.");
             continue;
         }
+
 
         println!("Perform another conversion (yes/no):");
         let mut go_again = String::new();
