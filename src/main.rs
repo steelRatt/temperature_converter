@@ -48,6 +48,16 @@ fn perform_conversion(choice: f64) {
     }
 }
 
+fn check_to_continue() -> bool {
+    println!("Perform another conversion (yes/no):");
+    let mut go_again = String::new();
+    io::stdin()
+        .read_line(&mut go_again)
+        .expect("Failed to read line.");
+
+    go_again.trim().eq_ignore_ascii_case("yes")
+}
+
 fn main() {
     println!("Welcome to Temperature Converter!");
 
@@ -59,14 +69,7 @@ fn main() {
         let choice = get_choice();
         perform_conversion(choice);
 
-
-        println!("Perform another conversion (yes/no):");
-        let mut go_again = String::new();
-        io::stdin()
-            .read_line(&mut go_again)
-            .expect("Failed to read line.");
-
-        if go_again.trim().eq_ignore_ascii_case("no") {
+        if !check_to_continue() {
             break;
         }
     }
