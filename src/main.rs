@@ -35,18 +35,17 @@ fn main() {
 
         let choice = get_input("Enter (1 or 2):");
 
-        let result = match choice as i32 {
-            1 => Some(celsius_to_fahrenheit(get_input("Enter temperature in C:"))),
-            2 => Some(fahrenheit_to_celsius(get_input("Enter temperature in F:"))),
-            _ => {
-                println!("Invalid choice.");
-                continue;
-            }
-        };
-
-        match result {
-            Some(value) => println!("Converted temp: {}", value),
-            None => println!("Error Converting."),
+        if choice == 1.0 {
+            let temp = get_input("Enter temperature in C:");
+            let converted = celsius_to_fahrenheit(temp);
+            println!("{} Celsius is {} Fahrenheit.", temp, converted);
+        } else if choice == 2.0 {
+            let temp = get_input("Enter temperature in F:");
+            let converted = fahrenheit_to_celsius(temp);
+            println!("{} Fahrenheit is {} Celsius.", temp, converted);
+        } else {
+            println!("Invalid choice.");
+            continue;
         }
 
         println!("Perform another conversion (yes/no):");
