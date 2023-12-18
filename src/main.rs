@@ -2,7 +2,6 @@ use std::io;
 
 fn get_input(prompt: &str) -> f64 {
     loop {
-        // Display prompt, get input
         println!("{}", prompt);
         let mut input = String::new();
         io::stdin()
@@ -37,6 +36,18 @@ fn get_choice() -> f64 {
     }
 }
 
+fn perform_conversion(choice: f64) {
+    if choice == 1.0 {
+        let temp = get_input("Enter temperature in C:");
+        let converted = celsius_to_fahrenheit(temp);
+        println!("{} Celsius is {} Fahrenheit.", temp, converted);
+    } else if choice == 2.0 {
+        let temp = get_input("Enter temperature in F:");
+        let converted = fahrenheit_to_celsius(temp);
+        println!("{} Fahrenheit is {} Celsius.", temp, converted);
+    }
+}
+
 fn main() {
     println!("Welcome to Temperature Converter!");
 
@@ -46,19 +57,7 @@ fn main() {
         println!("2. Fahrenheit to Celsius");
 
         let choice = get_choice();
-
-        if choice == 1.0 {
-            let temp = get_input("Enter temperature in C:");
-            let converted = celsius_to_fahrenheit(temp);
-            println!("{} Celsius is {} Fahrenheit.", temp, converted);
-        } else if choice == 2.0 {
-            let temp = get_input("Enter temperature in F:");
-            let converted = fahrenheit_to_celsius(temp);
-            println!("{} Fahrenheit is {} Celsius.", temp, converted);
-        } else {
-            println!("Invalid choice.");
-            continue;
-        }
+        perform_conversion(choice);
 
 
         println!("Perform another conversion (yes/no):");
