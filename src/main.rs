@@ -24,24 +24,27 @@ fn fahrenheit_to_celsius(f: f64) -> f64 {
     (f - 32.0) / 1.8
 }
 
-fn get_choice() -> f64 {
+fn get_choice() -> i32 {
     loop {
-        let choice = get_input("Enter (1 or 2):");
+        println!("Enter (1 or 2):");
+        let mut input = String::new();
+        io::stdin()
+            .read_line(&mut input)
+            .expect("Failed to read line.");
 
-        if choice == 1.0 || choice == 2.0 {
-            return choice;
-        } else {
-            println!("Invalid choice.");
+        match input.trim().parse::<i32>() {
+            Ok(num) if num == 1 || num == 2 => return num,
+            _ => println!("Invalid choice."),
         }
     }
 }
 
-fn perform_conversion(choice: f64) {
-    if choice == 1.0 {
+fn perform_conversion(choice: i32) {
+    if choice == 1 {
         let temp = get_input("Enter temperature in C:");
         let converted = celsius_to_fahrenheit(temp);
         println!("{} Celsius is {} Fahrenheit.", temp, converted);
-    } else if choice == 2.0 {
+    } else if choice == 2 {
         let temp = get_input("Enter temperature in F:");
         let converted = fahrenheit_to_celsius(temp);
         println!("{} Fahrenheit is {} Celsius.", temp, converted);
