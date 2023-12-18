@@ -34,11 +34,10 @@ fn main() {
         println!("2. Fahrenheit to Celsius");
 
         let choice = get_input("Enter (1 or 2):");
-        let temp = get_input("Enter temperature:");
 
         let result = match choice as i32 {
-            1 => Some(celsius_to_fahrenheit(temp)),
-            2 => Some(fahrenheit_to_celsius(temp)),
+            1 => Some(celsius_to_fahrenheit(get_input("Enter temperature in C:"))),
+            2 => Some(fahrenheit_to_celsius(get_input("Enter temperature in F:"))),
             _ => {
                 println!("Invalid choice.");
                 continue;
